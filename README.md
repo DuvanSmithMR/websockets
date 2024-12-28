@@ -20,3 +20,10 @@ Crear scripts para dev, build y start (Más sobre TS-Node-dev aquí)
 ```
 
 Repositorio frontend para pruebas: https://github.com/DuvanSmithMR/websockets-frontend
+
+Para correr el proyecto:
+```
+npm i
+
+npm run dev
+```
