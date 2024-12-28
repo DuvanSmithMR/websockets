@@ -5,7 +5,7 @@ const port = 7535;
 const wss = new WebSocketServer({ port });
 
 wss.on("connection", function connection(ws) {
-  console.log("Clietn connected");
+  console.log("Client connected");
 
   ws.on("error", console.error);
 
@@ -18,6 +18,10 @@ wss.on("connection", function connection(ws) {
   setInterval(() => {
     ws.send("Hola desde el servidor");
   }, 2000);
+
+  ws.on("close", function close() {
+    console.log("Client disconnected");
+  });
 });
 
 console.log(`server running on ws://localhost:${port}`);
