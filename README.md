@@ -18,3 +18,5 @@ Crear scripts para dev, build y start (Más sobre TS-Node-dev aquí)
 "build": "rimraf ./dist && tsc",
 "start": "npm run build && node dist/app.js"
 ```
+
+Repositorio frontend para pruebas: https://github.com/DuvanSmithMR/websockets-frontend
