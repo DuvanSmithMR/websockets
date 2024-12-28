@@ -11,14 +11,19 @@ wss.on("connection", function connection(ws) {
 
   ws.on("message", function message(data) {
     console.log("Mensaje desde el cliente", data);
-    ws.send(data.toString().toUpperCase());
+    const payload = {
+      type: "custom-message",
+      payload: data.toString().toUpperCase(),
+    };
+    ws.send(JSON.stringify(payload));
   });
 
-  ws.send("Hola desde el servidor");
-
-  setInterval(() => {
-    ws.send("Hola desde el servidor");
-  }, 2000);
+  ws.send(
+    JSON.stringify({
+      type: "custom-message",
+      payload: "Hola desde el servidor",
+    })
+  );
 
   ws.on("close", function close() {
     console.log("Client disconnected");
