@@ -10,7 +10,8 @@ wss.on("connection", function connection(ws) {
   ws.on("error", console.error);
 
   ws.on("message", function message(data) {
-    console.log("received: %s", data);
+    console.log("Mensaje desde el cliente", data);
+    ws.send(data.toString().toUpperCase());
   });
 
   ws.send("Hola desde el servidor");
