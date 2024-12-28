@@ -1,4 +1,4 @@
-import { WebSocketServer } from "ws";
+import { WebSocketServer, WebSocket } from "ws";
 
 const port = 7535;
 
@@ -10,12 +10,16 @@ wss.on("connection", function connection(ws) {
   ws.on("error", console.error);
 
   ws.on("message", function message(data) {
-    console.log("Mensaje desde el cliente", data);
     const payload = {
       type: "custom-message",
       payload: data.toString().toUpperCase(),
     };
-    ws.send(JSON.stringify(payload));
+
+    wss.clients.forEach(function each(client) {
+      if (client.readyState === WebSocket.OPEN) {
+        client.send(JSON.stringify(payload), { binary: false });
+      }
+    });
   });
 
   ws.send(
