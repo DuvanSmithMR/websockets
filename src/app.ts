@@ -14,6 +14,10 @@ wss.on("connection", function connection(ws) {
   });
 
   ws.send("Hola desde el servidor");
+
+  setInterval(() => {
+    ws.send("Hola desde el servidor");
+  }, 2000);
 });
 
 console.log(`server running on ws://localhost:${port}`);
