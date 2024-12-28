@@ -15,8 +15,18 @@ wss.on("connection", function connection(ws) {
       payload: data.toString().toUpperCase(),
     };
 
+    //Todos los clientes conectados
+    /*
     wss.clients.forEach(function each(client) {
       if (client.readyState === WebSocket.OPEN) {
+        client.send(JSON.stringify(payload), { binary: false });
+      }
+    });
+    */
+
+    //Todos los clientes conectados menos el que envio el mensaje
+    wss.clients.forEach(function each(client) {
+      if (client !== ws && client.readyState === WebSocket.OPEN) {
         client.send(JSON.stringify(payload), { binary: false });
       }
     });
